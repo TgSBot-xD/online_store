@@ -2,7 +2,7 @@
 
 Одностраничное веб-приложение интернет-магазина кроссовок. Проект реализован по макету из Figma и включает каталог товаров с фильтрацией, корзину покупок, оформление заказа и интерактивный подбор обуви.
 
-**[Demo](https://sneak-max.netlify.app/)** | **[Figma-макет](https://www.figma.com/file/EEiUY5PZ7GiO2hYRth11Yy/SneakMax-YouTube?type=design&node-id=43-389&mode=design&t=IWJYyEEC3aKvHbTQ-0)**
+**[Demo](https://sneakemax.netlify.app/)** | **[Figma-макет](https://www.figma.com/file/EEiUY5PZ7GiO2hYRth11Yy/SneakMax-YouTube?type=design&node-id=43-389&mode=design&t=IWJYyEEC3aKvHbTQ-0)**
 
 ## Стек технологий
 
