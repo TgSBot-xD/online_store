@@ -23,16 +23,16 @@ const Row = styled.div`
 `;
 
 const Footer = () => {
-	const { changeStatusActive } = sliceBasketPopUp.actions;
-	const dispatch = useAppDispatch();
+  const { changeStatusActive } = sliceBasketPopUp.actions;
+  const dispatch = useAppDispatch();
 
-	const openPopUp = (): void => {
-		dispatch(changeStatusActive(true));
-	};
+  const openPopUp = (): void => {
+    dispatch(changeStatusActive(true));
+  };
 
-	const timeOutDispatch = () => {
-		setTimeout(openPopUp, 750);
-	};
+  const timeOutDispatch = () => {
+    setTimeout(openPopUp, 750);
+  };
 
 	return (
 		<Wrapper id='footer'>

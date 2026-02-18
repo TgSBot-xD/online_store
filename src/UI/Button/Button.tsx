@@ -2,21 +2,21 @@ import React, { FC, PropsWithChildren } from 'react';
 import { styled } from 'styled-components';
 
 interface IButton extends PropsWithChildren, ButtonStyle {
-	disabled?: boolean;
+  disabled?: boolean;
 }
 
 type ButtonStyle = {
-	ground_color?: string;
-	width: string;
-	height: string;
-	border_radius?: string;
-	margin?: string;
-	type?: string;
-	onClick?: any;
-	value?: number;
-	border?: string;
-	justify_content?: string;
-	align_items?: string;
+  ground_color?: string;
+  width: string;
+  height: string;
+  border_radius?: string;
+  margin?: string;
+  type?: string;
+  onClick?: React.MouseEventHandler<HTMLButtonElement>;
+  value?: number;
+  border?: string;
+  justify_content?: string;
+  align_items?: string;
 };
 
 const ButtonStyled = styled.button<ButtonStyle>`
@@ -35,24 +35,24 @@ const ButtonStyled = styled.button<ButtonStyle>`
 `;
 
 const Button: FC<IButton> = ({
-	children,
-	type,
-	onClick,
-	value,
-	disabled,
-	...props
+  children,
+  type,
+  onClick,
+  value,
+  disabled,
+  ...props
 }) => {
-	return (
-		<ButtonStyled
-			type={type}
-			onClick={onClick}
-			value={value}
-			disabled={disabled}
-			{...props}
-		>
-			{children}
-		</ButtonStyled>
-	);
+  return (
+    <ButtonStyled
+      type={type}
+      onClick={onClick}
+      value={value}
+      disabled={disabled}
+      {...props}
+    >
+      {children}
+    </ButtonStyled>
+  );
 };
 
 export default Button;

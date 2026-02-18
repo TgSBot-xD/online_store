@@ -3,22 +3,22 @@ import { styled } from 'styled-components';
 import Fonts from '../../global/styles/Fonts';
 
 interface IText extends PropsWithChildren {
-	fontFamily: string;
-	fontSize: string;
-	line_height?: string;
-	fontWeight?: string;
-	fontStyle?: string;
-	color?: string;
-	margin?: string;
-	text_align?: string;
-	display?: string;
-	letter_spacing?: string;
-	text_transform?: string;
-	z_index?: string;
-	onClick?: any;
-	opacity?: string;
-	vertical_align?: string;
-	text_decoration?: string;
+  fontFamily: string;
+  fontSize: string;
+  line_height?: string;
+  fontWeight?: string;
+  fontStyle?: string;
+  color?: string;
+  margin?: string;
+  text_align?: string;
+  display?: string;
+  letter_spacing?: string;
+  text_transform?: string;
+  z_index?: string;
+  onClick?: React.MouseEventHandler<HTMLSpanElement>;
+  opacity?: string;
+  vertical_align?: string;
+  text_decoration?: string;
 }
 
 const StyledText = styled.span<IText>`
@@ -40,14 +40,14 @@ const StyledText = styled.span<IText>`
 `;
 
 const Text: FC<IText> = ({ children, onClick, ...props }) => {
-	return (
-		<>
-			<Fonts />
-			<StyledText onClick={onClick} {...props}>
-				{children}
-			</StyledText>
-		</>
-	);
+  return (
+    <>
+      <Fonts />
+      <StyledText onClick={onClick} {...props}>
+        {children}
+      </StyledText>
+    </>
+  );
 };
 
 export default Text;

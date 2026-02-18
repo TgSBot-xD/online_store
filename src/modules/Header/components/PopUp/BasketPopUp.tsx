@@ -10,11 +10,11 @@ import PostBasketPopUp from '../PostBasketPopUp';
 import { BeautifulNumbers } from '../../../../helpers/BeautifulNumbers';
 
 type PropsWrapper = {
-	display: string;
+  display: string;
 };
 
 type PropsRow = {
-	display: string;
+  display: string;
 };
 
 const Wrapper = styled.div<PropsWrapper>`
@@ -28,7 +28,7 @@ const Wrapper = styled.div<PropsWrapper>`
 
 const Row = styled.div<PropsRow>`
 	width: fit-content;
-	height; fit-content;
+	height: fit-content;
 	position: absolute;
 	top: 72px;
 	left: 1032px;
@@ -70,106 +70,106 @@ const BlockAllSum = styled.div`
 `;
 
 const BasketPopUp = () => {
-	const { active, postBasket, countPurchases, sumPricePosts } = useAppSelector(
-		(state) => state.BasketPopUp
-	);
-	const { changeStatusActive, changeSumPricePosts } = sliceBasketPopUp.actions;
-	const { changeStatus } = sliceOrderRegistration.actions;
-	const dispatch = useAppDispatch();
+  const { active, postBasket, countPurchases, sumPricePosts } = useAppSelector(
+    (state) => state.BasketPopUp
+  );
+  const { changeStatusActive, changeSumPricePosts } = sliceBasketPopUp.actions;
+  const { changeStatus } = sliceOrderRegistration.actions;
+  const dispatch = useAppDispatch();
 
-	const closePopUp = (event: SyntheticEvent): void => {
-		event.stopPropagation();
-		dispatch(changeStatusActive(false));
-	};
+  const closePopUp = (event: SyntheticEvent): void => {
+    event.stopPropagation();
+    dispatch(changeStatusActive(false));
+  };
 
-	const openOrderRegistration = (event: SyntheticEvent) => {
-		event.preventDefault();
-		dispatch(changeStatusActive(false));
-		dispatch(changeStatus(true));
-	};
+  const openOrderRegistration = (event: SyntheticEvent) => {
+    event.preventDefault();
+    dispatch(changeStatusActive(false));
+    dispatch(changeStatus(true));
+  };
 
-	useEffect(() => {
-		const sumPostBasket = () => {
-			const sum: number[] = [];
-			postBasket.map((post) => sum.push(post.net_price));
-			const allPriceToPurchase = sum.reduce(
-				(partialSum: number, secondSum: number) =>
-					Math.floor(partialSum) + Math.floor(secondSum),
-				0
-			);
-			dispatch(changeSumPricePosts(allPriceToPurchase));
-		};
-		sumPostBasket();
-	}, [changeSumPricePosts, dispatch, postBasket]);
+  useEffect(() => {
+    const sumPostBasket = () => {
+      const sum: number[] = [];
+      postBasket.map((post) => sum.push(post.net_price));
+      const allPriceToPurchase = sum.reduce(
+        (partialSum: number, secondSum: number) =>
+          Math.floor(partialSum) + Math.floor(secondSum),
+        0
+      );
+      dispatch(changeSumPricePosts(allPriceToPurchase));
+    };
+    sumPostBasket();
+  }, [changeSumPricePosts, dispatch, postBasket]);
 
-	return (
-		<>
-			<Wrapper display={active ? 'flex' : 'none'} onClick={closePopUp} />
-			<Row
-				onClick={(event: SyntheticEvent) => event.stopPropagation()}
-				display={active ? 'block' : 'none'}
-			>
-				<AllPurchases>
-					{postBasket.length === 0 ? (
-						<Text
-							fontFamily='Intro-Book'
-							fontSize='30px'
-							fontWeight='700'
-							color='#444B58'
-						>
-							Корзина пуста
-						</Text>
-					) : (
-						postBasket.map((post) => {
-							return <PostBasketPopUp post={post} key={post.id} />;
-						})
-					)}
-				</AllPurchases>
-				{countPurchases === 0 ? (
-					''
-				) : (
-					<BlockAllSum>
-						<BlockText
-							width='fit-content'
-							height='fit-content'
-							flex_direction='column'
-							margin='20px'
-						>
-							<Text
-								fontFamily='Intro-Book'
-								fontSize='14px'
-								line_height='20px'
-								color='#4D4D4D'
-								margin='0px 0px 10px 0px'
-							>
-								Итого:
-							</Text>
-							<Text
-								fontFamily='Intro-Bold'
-								fontSize='20px'
-								fontWeight='700'
-								color='#4D4D4D'
-							>
-								{BeautifulNumbers(sumPricePosts)}
-							</Text>
-						</BlockText>
-						<Button
-							width='239px'
-							height='50px'
-							ground_color='#F14F4F'
-							border_radius='4px'
-							margin='0px 20px 0px 0px'
-							onClick={openOrderRegistration}
-						>
-							<Text fontFamily='Intro-Regular' fontSize='16px'>
-								Перейти к оформлению
-							</Text>
-						</Button>
-					</BlockAllSum>
-				)}
-			</Row>
-		</>
-	);
+  return (
+    <>
+      <Wrapper display={active ? 'flex' : 'none'} onClick={closePopUp} />
+      <Row
+        onClick={(event: SyntheticEvent) => event.stopPropagation()}
+        display={active ? 'block' : 'none'}
+      >
+        <AllPurchases>
+          {postBasket.length === 0 ? (
+            <Text
+              fontFamily='Intro-Book'
+              fontSize='30px'
+              fontWeight='700'
+              color='#444B58'
+            >
+              Корзина пуста
+            </Text>
+          ) : (
+            postBasket.map((post) => {
+              return <PostBasketPopUp post={post} key={post.id} />;
+            })
+          )}
+        </AllPurchases>
+        {countPurchases === 0 ? (
+          ''
+        ) : (
+          <BlockAllSum>
+            <BlockText
+              width='fit-content'
+              height='fit-content'
+              flex_direction='column'
+              margin='20px'
+            >
+              <Text
+                fontFamily='Intro-Book'
+                fontSize='14px'
+                line_height='20px'
+                color='#4D4D4D'
+                margin='0px 0px 10px 0px'
+              >
+                Итого:
+              </Text>
+              <Text
+                fontFamily='Intro-Bold'
+                fontSize='20px'
+                fontWeight='700'
+                color='#4D4D4D'
+              >
+                {BeautifulNumbers(sumPricePosts)}
+              </Text>
+            </BlockText>
+            <Button
+              width='239px'
+              height='50px'
+              ground_color='#F14F4F'
+              border_radius='4px'
+              margin='0px 20px 0px 0px'
+              onClick={openOrderRegistration}
+            >
+              <Text fontFamily='Intro-Regular' fontSize='16px'>
+                Перейти к оформлению
+              </Text>
+            </Button>
+          </BlockAllSum>
+        )}
+      </Row>
+    </>
+  );
 };
 
 export default BasketPopUp;

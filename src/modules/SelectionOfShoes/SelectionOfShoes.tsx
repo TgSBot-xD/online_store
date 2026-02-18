@@ -21,23 +21,23 @@ const Row = styled.div`
 `;
 
 const SelectionOfShoes = () => {
-	const { page } = useAppSelector((state) => state.IndividualSelectionShoes);
+  const { page } = useAppSelector((state) => state.IndividualSelectionShoes);
 
-	return (
-		<Wrapper id='selectionOfShoes'>
-			<Row>
-				{page.thisPage === 1 ? (
-					<SelectionTypeShoes />
-				) : page.thisPage === 2 ? (
-					<SelectionSizeShoes />
-				) : page.thisPage === 3 ? (
-					<Details />
-				) : (
-					<EndOfSelection />
-				)}
-			</Row>
-		</Wrapper>
-	);
+  return (
+    <Wrapper id='selectionOfShoes'>
+      <Row>
+        {page.thisPage === 1 ? (
+          <SelectionTypeShoes />
+        ) : page.thisPage === 2 ? (
+          <SelectionSizeShoes />
+        ) : page.thisPage === 3 ? (
+          <Details />
+        ) : (
+          <EndOfSelection />
+        )}
+      </Row>
+    </Wrapper>
+  );
 };
 
 export default SelectionOfShoes;

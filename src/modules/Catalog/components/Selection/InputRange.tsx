@@ -5,7 +5,7 @@ import { useAppDispatch, useAppSelector } from '../../../../hook/redux';
 import { sortSliceShoes } from '../../../../store/reducers/SortPostsShoes';
 
 type PropsTrackColor = {
-	thumb: number;
+  thumb: number;
 };
 
 const StyledSlider = styled(ReactSlider)`
@@ -38,48 +38,49 @@ const StyledTrack = styled.div<PropsTrackColor>`
 	top: -2px;
 `;
 
-const Track = (props: object, state: any) => (
-	<StyledTrack {...props} thumb={state.index} />
+const Track = (props: object, state: { index: number }) => (
+  <StyledTrack {...props} thumb={state.index} />
 );
 
 const InputRange: FC = () => {
-	const [minRange, setMinRange] = useState(0);
-	const [maxRange, setMaxRange] = useState(100);
+  const [minRange, setMinRange] = useState(0);
+  const [maxRange, setMaxRange] = useState(100);
 
-	// Для взаимодействия со store
-	const { defaultVelues } = useAppSelector((state) => state.sortPostsShoes);
+  // Для взаимодействия со store
+  const { defaultValues } = useAppSelector((state) => state.sortPostsShoes);
 
-	const { changeMinimumPrice, changeMaximumPrice, changeDefaultVelues } =
-		sortSliceShoes.actions;
-	const dispatch = useAppDispatch();
+  const { changeMinimumPrice, changeMaximumPrice, changeDefaultValues } =
+    sortSliceShoes.actions;
+  const dispatch = useAppDispatch();
 
-	//Value - значение
-	const ChangeValueSlider = (value: any) => {
-		setMaxRange(value[1]);
-		setMinRange(value[0]);
-		dispatch(changeMinimumPrice(value[0]));
-		dispatch(changeMaximumPrice(value[1]));
-	};
+  //Value - значение
+  const ChangeValueSlider = (value: number | readonly number[]) => {
+    if (typeof value === 'number') return;
+    setMaxRange(value[1]);
+    setMinRange(value[0]);
+    dispatch(changeMinimumPrice(value[0]));
+    dispatch(changeMaximumPrice(value[1]));
+  };
 
-	useEffect(() => {
-		if (defaultVelues === true) {
-			setMinRange(0);
-			setMaxRange(100);
-			dispatch(changeDefaultVelues(false));
-		}
-	}, [defaultVelues, dispatch, changeDefaultVelues]);
+  useEffect(() => {
+    if (defaultValues === true) {
+      setMinRange(0);
+      setMaxRange(100);
+      dispatch(changeDefaultValues(false));
+    }
+  }, [defaultValues, dispatch, changeDefaultValues]);
 
-	return (
-		<>
-			<StyledSlider
-				renderTrack={Track} // Кастомная линия ползунка
-				renderThumb={Thumb} // Кастомный ползунок
-				minDistance={1.7} // Минимальная дистанция между ползунками
-				value={[minRange, maxRange]}
-				onChange={ChangeValueSlider}
-			/>
-		</>
-	);
+  return (
+    <>
+      <StyledSlider
+        renderTrack={Track} // Кастомная линия ползунка
+        renderThumb={Thumb} // Кастомный ползунок
+        minDistance={1.7} // Минимальная дистанция между ползунками
+        value={[minRange, maxRange]}
+        onChange={ChangeValueSlider}
+      />
+    </>
+  );
 };
 
 export default InputRange;

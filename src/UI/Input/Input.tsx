@@ -2,22 +2,22 @@ import React, { FC } from 'react';
 import { styled } from 'styled-components';
 
 interface IInput extends InputStyle {
-	placeholder: string;
-	type: 'text' | 'tel';
-	onChange?: any;
-	onBlur?: any;
-	value?: any;
-	ref?: any;
-	onClick?: any;
+  placeholder: string;
+  type: 'text' | 'tel';
+  onChange?: React.ChangeEventHandler<HTMLInputElement>;
+  onBlur?: React.FocusEventHandler<HTMLInputElement>;
+  value?: string;
+  ref?: React.Ref<HTMLInputElement>;
+  onClick?: React.MouseEventHandler<HTMLInputElement>;
 }
 
 type InputStyle = {
-	background_color: string;
-	width: string;
-	height: string;
-	border_radius?: string;
-	border?: string;
-	margin?: string;
+  background_color: string;
+  width: string;
+  height: string;
+  border_radius?: string;
+  border?: string;
+  margin?: string;
 };
 
 const InputStyled = styled.input<InputStyle>`
@@ -37,15 +37,15 @@ const InputStyled = styled.input<InputStyle>`
 `;
 
 const Input: FC<IInput> = ({ ref, ...props }) => {
-	return (
-		<InputStyled
-			{...props}
-			value={props.value}
-			placeholder={props.placeholder}
-			onClick={props.onClick}
-			type={props.type}
-		/>
-	);
+  return (
+    <InputStyled
+      {...props}
+      value={props.value}
+      placeholder={props.placeholder}
+      onClick={props.onClick}
+      type={props.type}
+    />
+  );
 };
 
 export default Input;

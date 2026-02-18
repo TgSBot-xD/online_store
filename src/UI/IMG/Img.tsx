@@ -2,25 +2,25 @@ import React, { FC, PropsWithChildren } from 'react';
 import { styled } from 'styled-components';
 
 interface IImg extends PropsWithChildren, imgStyle {
-	src: any;
-	alt: any;
-	onChange?: string;
+  src: string;
+  alt: string;
+  onChange?: string;
 }
 
 type imgStyle = {
-	width: string;
-	height: string;
-	margin?: string;
-	position?: string;
-	top?: string;
-	right?: string;
-	bottom?: string;
-	left?: string;
-	clip_path?: string;
-	transform?: string;
-	onChange?: string;
-	transition?: string;
-	fill?: string;
+  width: string;
+  height: string;
+  margin?: string;
+  position?: string;
+  top?: string;
+  right?: string;
+  bottom?: string;
+  left?: string;
+  clip_path?: string;
+  transform?: string;
+  onChange?: string;
+  transition?: string;
+  fill?: string;
 };
 
 const IMG = styled.img<imgStyle>`
@@ -39,7 +39,7 @@ const IMG = styled.img<imgStyle>`
 `;
 
 const Img: FC<IImg> = ({ src, alt, onChange, ...props }) => {
-	return <IMG src={src} onChange={onChange} alt={alt} {...props} />;
+  return <IMG src={src} onChange={onChange} alt={alt} {...props} />;
 };
 
 export default Img;

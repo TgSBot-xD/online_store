@@ -1,31 +1,31 @@
 import React, { FC, PropsWithChildren } from 'react';
 import { styled } from 'styled-components';
 
-interface IBlockText extends PropsWithChildren, BlockTextStyle {}
+interface IBlockText extends PropsWithChildren, BlockTextStyle { }
 
 type BlockTextStyle = {
-	width: string;
-	height: string;
-	margin?: string;
-	justify_content?: string;
-	align_items?: string;
-	flex_direction?: string;
-	vertical_align?: string;
-	position?: string;
-	top?: string;
-	right?: string;
-	bottom?: string;
-	left?: string;
-	display?: string;
-	transform?: string;
-	onClick?: any;
-	background_color?: string;
-	transition?: string;
-	opacity?: string;
-	z_index?: string;
-	flex_wrap?: string;
-	onMouseEnter?: any;
-	onMouseLeave?: any;
+  width: string;
+  height: string;
+  margin?: string;
+  justify_content?: string;
+  align_items?: string;
+  flex_direction?: string;
+  vertical_align?: string;
+  position?: string;
+  top?: string;
+  right?: string;
+  bottom?: string;
+  left?: string;
+  display?: string;
+  transform?: string;
+  onClick?: React.MouseEventHandler<HTMLDivElement>;
+  background_color?: string;
+  transition?: string;
+  opacity?: string;
+  z_index?: string;
+  flex_wrap?: string;
+  onMouseEnter?: React.MouseEventHandler<HTMLDivElement>;
+  onMouseLeave?: React.MouseEventHandler<HTMLDivElement>;
 };
 
 const BlockTextStyled = styled.div<BlockTextStyle>`
@@ -51,22 +51,22 @@ const BlockTextStyled = styled.div<BlockTextStyle>`
 `;
 
 const BlockText: FC<IBlockText> = ({
-	children,
-	onClick,
-	onMouseEnter,
-	onMouseLeave,
-	...props
+  children,
+  onClick,
+  onMouseEnter,
+  onMouseLeave,
+  ...props
 }) => {
-	return (
-		<BlockTextStyled
-			onClick={onClick}
-			onMouseEnter={onMouseEnter}
-			onMouseLeave={onMouseLeave}
-			{...props}
-		>
-			{children}
-		</BlockTextStyled>
-	);
+  return (
+    <BlockTextStyled
+      onClick={onClick}
+      onMouseEnter={onMouseEnter}
+      onMouseLeave={onMouseLeave}
+      {...props}
+    >
+      {children}
+    </BlockTextStyled>
+  );
 };
 
 export default BlockText;

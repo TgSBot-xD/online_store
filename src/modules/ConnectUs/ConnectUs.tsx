@@ -11,7 +11,7 @@ import instagram from '../../assets/img/px-instagram-logo-1.jpg';
 import BlockText from '../../UI/BlockText/BlockText';
 
 type PropsPhoto = {
-	margin?: string;
+  margin?: string;
 };
 
 const Wrapper = styled.div`

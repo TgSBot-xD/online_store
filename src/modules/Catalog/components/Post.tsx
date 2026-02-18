@@ -9,10 +9,10 @@ import InteractivePanel from './Post/InteractivePanel';
 import { BeautifulNumbers } from '../../../helpers/BeautifulNumbers';
 
 interface IPost {
-	img: any;
-	title: string;
-	price: number;
-	post: IPosts;
+  img: string;
+  title: string;
+  price: number;
+  post: IPosts;
 }
 
 const Wrapper = styled.div`
@@ -40,63 +40,63 @@ const StyledImg = styled(Img)`
 `;
 
 const Post: FC<IPost> = ({ img, title, price, post }) => {
-	const [focus, setFocus] = useState(false);
+  const [focus, setFocus] = useState(false);
 
-	const onMouseEnterFocus = (event: FocusEvent) => {
-		event.preventDefault();
-		setFocus(true);
-	};
+  const onMouseEnterFocus = (event: React.MouseEvent<HTMLDivElement>) => {
+    event.preventDefault();
+    setFocus(true);
+  };
 
-	const onMouseLeaveFocus = (event: FocusEvent) => {
-		event.preventDefault();
-		setFocus(false);
-	};
+  const onMouseLeaveFocus = (event: React.MouseEvent<HTMLDivElement>) => {
+    event.preventDefault();
+    setFocus(false);
+  };
 
-	return (
-		<Wrapper>
-			<Row>
-				<Posts>
-					<BlockImg
-						width='280px'
-						height='293px'
-						position='relative'
-						onMouseEnter={onMouseEnterFocus}
-						onMouseLeave={onMouseLeaveFocus}
-					>
-						<StyledImg
-							width='max-content'
-							height='max-content'
-							src={img}
-							alt='Кроссовки'
-						/>
-						{focus === true ? <InteractivePanel post={post} /> : ''}
-					</BlockImg>
-					<BlockText
-						width='fit-content'
-						height='fit-content'
-						flex_direction='column'
-					>
-						<Text
-							fontFamily='Intro-Book'
-							fontSize='16px'
-							color='#444B58'
-							margin='10px 0px 0px 0px'
-						>
-							{title}
-						</Text>
-						<Text
-							fontFamily='Intro-Regular'
-							fontSize='20px'
-							color='#444B58'
-							margin='10px 0px 0px 0px'
-						>
-							{`${BeautifulNumbers(Math.floor(price))} р`}
-						</Text>
-					</BlockText>
-				</Posts>
-			</Row>
-		</Wrapper>
-	);
+  return (
+    <Wrapper>
+      <Row>
+        <Posts>
+          <BlockImg
+            width='280px'
+            height='293px'
+            position='relative'
+            onMouseEnter={onMouseEnterFocus}
+            onMouseLeave={onMouseLeaveFocus}
+          >
+            <StyledImg
+              width='max-content'
+              height='max-content'
+              src={img}
+              alt='Кроссовки'
+            />
+            {focus === true ? <InteractivePanel post={post} /> : ''}
+          </BlockImg>
+          <BlockText
+            width='fit-content'
+            height='fit-content'
+            flex_direction='column'
+          >
+            <Text
+              fontFamily='Intro-Book'
+              fontSize='16px'
+              color='#444B58'
+              margin='10px 0px 0px 0px'
+            >
+              {title}
+            </Text>
+            <Text
+              fontFamily='Intro-Regular'
+              fontSize='20px'
+              color='#444B58'
+              margin='10px 0px 0px 0px'
+            >
+              {`${BeautifulNumbers(Math.floor(price))} р`}
+            </Text>
+          </BlockText>
+        </Posts>
+      </Row>
+    </Wrapper>
+  );
 };
 
 export default Post;
